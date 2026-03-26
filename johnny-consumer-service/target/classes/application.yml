@@ -1,0 +1,11 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: johnny-consumer-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 121.43.195.26:8848
+        namespace: fc980474-f863-404b-b5d2-b493c4a53c16

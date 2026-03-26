@@ -1,0 +1,30 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: johnny-gateway-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 121.43.195.26:8848
+        namespace: fc980474-f863-404b-b5d2-b493c4a53c16
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: provider_route
+          uri: lb://johnny-provider-service
+          predicates:
+            - Path=/johnny/provider/**
+          filters:
+            - StripPrefix=2
+      loadbalancer:
+        nacos:
+          enabled: true   # 👈🔥关键（很多人不知道）
+
+
+logging:
+  level:
+    org.springframework.cloud.loadbalancer: DEBUG
