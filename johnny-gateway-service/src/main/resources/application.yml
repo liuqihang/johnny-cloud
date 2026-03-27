@@ -22,8 +22,6 @@ spring:
         server-addr: 121.43.195.26:8848
         namespace: fc980474-f863-404b-b5d2-b493c4a53c16
     gateway:
-#      default-filters:
-#        - name: SentinelGatewayFilter
       discovery:
         locator:
           enabled: true
