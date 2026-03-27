@@ -1,15 +1,29 @@
 server:
-  port: 8080
+  port: 8083
 
 spring:
   application:
     name: johnny-gateway-service
   cloud:
+    sentinel:
+      scg:
+        enabled: true          # 开启网关限流
+        route-id-prefix: ""   # 清除路由前缀，让 Dashboard 正常显示资源
+      transport:
+#        dashboard: 121.43.195.26:8080   # Sentinel控制台地址
+        dashboard: 127.0.0.1:8080   # Sentinel控制台地址
+#        client-ip: 2bw7023275jh.vicp.fun:53702
+        port: 8719                 # 本地通信端口
+      eager: true  # 立即初始化，避免懒加载延迟（可选）
+      filter:
+        enabled: true
     nacos:
       discovery:
         server-addr: 121.43.195.26:8848
         namespace: fc980474-f863-404b-b5d2-b493c4a53c16
     gateway:
+#      default-filters:
+#        - name: SentinelGatewayFilter
       discovery:
         locator:
           enabled: true
@@ -28,3 +42,14 @@ spring:
 logging:
   level:
     org.springframework.cloud.loadbalancer: DEBUG
+
+management:
+  security:
+    enabled: false
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
