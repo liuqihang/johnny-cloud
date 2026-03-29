@@ -1,6 +1,8 @@
 server:
   port: 8081
 
+applicationName: provider-johnny
+
 spring:
   application:
     name: johnny-provider-service

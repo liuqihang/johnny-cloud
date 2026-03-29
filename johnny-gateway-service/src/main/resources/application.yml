@@ -3,51 +3,26 @@ server:
 
 spring:
   application:
-    name: johnny-gateway-service
+    name: johnny-gateway-service  # 你的服务名，必须和Nacos dataId前缀一致
+  # 核心：新版拉取Nacos配置的写法
+  config:
+    import:
+      nacos:${spring.application.name}.yaml # 自动读取 服务名.yaml
   cloud:
-    sentinel:
-      scg:
-        enabled: true          # 开启网关限流
-        route-id-prefix: ""   # 清除路由前缀，让 Dashboard 正常显示资源
-      transport:
-#        dashboard: 121.43.195.26:8080   # Sentinel控制台地址
-        dashboard: 127.0.0.1:8080   # Sentinel控制台地址
-#        client-ip: 2bw7023275jh.vicp.fun:53702
-        port: 8719                 # 本地通信端口
-      eager: true  # 立即初始化，避免懒加载延迟（可选）
-      filter:
-        enabled: true
-    nacos:
-      discovery:
-        server-addr: 121.43.195.26:8848
-        namespace: fc980474-f863-404b-b5d2-b493c4a53c16
     gateway:
       discovery:
         locator:
-          enabled: true
-      routes:
-        - id: provider_route
-          uri: lb://johnny-provider-service
-          predicates:
-            - Path=/johnny/provider/**
-          filters:
-            - StripPrefix=2
-      loadbalancer:
-        nacos:
-          enabled: true   # 👈🔥关键（很多人不知道）
-
-
-logging:
-  level:
-    org.springframework.cloud.loadbalancer: DEBUG
-
-management:
-  security:
-    enabled: false
-  endpoints:
-    web:
-      exposure:
-        include: "*"
-  endpoint:
-    health:
-      show-details: always
+          enabled: false  # 👈改成 false，关闭自动路由
+          lower-case-service-id: true
+    nacos:
+      # Nacos配置中心地址
+      config:
+        server-addr: 121.43.195.26:8848
+        namespace: fc980474-f863-404b-b5d2-b493c4a53c16
+        group: DEFAULT_GROUP
+        file-extension: yml # 后缀
+      discovery:
+        server-addr: 121.43.195.26:8848
+        namespace: fc980474-f863-404b-b5d2-b493c4a53c16
+        group: DEFAULT_GROUP
+        file-extension: yml # 后缀
