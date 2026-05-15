@@ -4,8 +4,33 @@ server:
 spring:
   application:
     name: johnny-consumer-service
+
+  profiles:
+    active: uat
+
+  config:
+    import:
+      - "classpath:application-oauth.yml"
+
+      - "optional:nacos:johnny-consumer-service-${spring.profiles.active}.yml?refreshEnabled=true"
+      - "optional:nacos:oauth-service-${spring.profiles.active}.yml?refreshEnabled=true"
+
   cloud:
     nacos:
       discovery:
         server-addr: 121.43.195.26:8848
         namespace: fc980474-f863-404b-b5d2-b493c4a53c16
+      config:
+        server-addr: 121.43.195.26:8848
+        namespace: fc980474-f863-404b-b5d2-b493c4a53c16
+        file-extension: yml
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+lxqy:
+  jkyp: 3
+  zhfw: 1

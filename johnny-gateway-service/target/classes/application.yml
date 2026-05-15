@@ -3,10 +3,10 @@ server:
 
 spring:
   application:
+    import:
     name: johnny-gateway-service  # 你的服务名，必须和Nacos dataId前缀一致
   # 核心：新版拉取Nacos配置的写法
   config:
-    import:
       nacos:${spring.application.name}.yaml # 自动读取 服务名.yaml
   cloud:
     gateway:

@@ -1,0 +1,5 @@
+{
+    "clawMode.mode": "editor",
+    "workbench.activityBar.location": "default",
+    "java.compile.nullAnalysis.mode": "automatic"
+}
