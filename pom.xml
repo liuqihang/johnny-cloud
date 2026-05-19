@@ -3,6 +3,11 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.3.5</version>
+    </parent>
 
     <groupId>com.johnny</groupId>
     <artifactId>johnny-cloud</artifactId>
@@ -15,6 +20,7 @@
         <module>johnny-provider-service</module>
         <module>johnny-consumer-service</module>
         <module>johnny-gateway-service</module>
+        <module>johnny-auth-service</module>
     </modules>
 
     <properties>
