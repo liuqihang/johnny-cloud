@@ -1,5 +1,6 @@
 package com.johnny.controller;
 
+import com.johnny.config.MultiProperties;
 import com.johnny.config.TestConfig;
 import com.johnny.service.ProviderClient;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,6 +20,9 @@ public class TestController {
     @Resource
     private TestConfig testConfig;
 
+    @Resource
+    private MultiProperties multiProperties;
+
     @Value("${lxqy.jkyp}")
     private String jkyp;
 
@@ -31,6 +35,7 @@ public class TestController {
         System.out.println(testConfig.getUass());
         System.out.println(jkyp);
         System.out.println(zhfw);
+        System.out.println(multiProperties.getAll().toString());
 //        return providerClient.hello();
         return "success";
     }

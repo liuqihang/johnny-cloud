@@ -24,13 +24,26 @@ spring:
         server-addr: 121.43.195.26:8848
         namespace: fc980474-f863-404b-b5d2-b493c4a53c16
         file-extension: yml
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
+  rocketmq:
+    namesrv: 128.1.1.8:9876
+    producerGroup: smart
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: "*"
 
 lxqy:
   jkyp: 3
   zhfw: 1
+
+
+custom:
+  rocketmq:
+    configObjects:
+      test1:
+        namesrv: 128.1.1.8:9876
+        producerGroup: smart
+      test2:
+        namesrv: 128.8.8.91:98761
+        producerGroup: smart2
